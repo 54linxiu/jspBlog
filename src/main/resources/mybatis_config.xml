@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <properties resource="db.properties">
+
+    </properties>
+
+    <settings>
+        <!-- 开启驼峰，开启后，只要数据库字段和对象属性名字母相同，无论中间加多少下划线都可以识别 -->
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+    </settings>
+
+    <typeAliases>
+        <!--        在bean较少时使用-->
+<!--                <typeAlias alias="user" type="com.qht.bean.User"/>-->
+        <package name="com.qht.bean"/>
+    </typeAliases>
+
+    <!--    数据库配置-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+
+    <mappers>
+<!--        <mapper resource="com/qht/dao/UserMapper.xml"/>-->
+        <!--        必须同名同包-->
+        <!--            <mapper class="com.qht.dao.UserMapper"></mapper>-->
+                <package name="com.qht.dao"/>
+    </mappers>
+
+</configuration>
